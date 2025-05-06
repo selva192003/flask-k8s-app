@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/your-repo/flask-k8s-app.git' // <-- replace if using Jenkins Git integration
+                git url: 'https://github.com/selva192003/flask-k8s-app.git'
             }
         }
 
@@ -47,6 +47,15 @@ pipeline {
                     """
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Deployment completed successfully!"
+        }
+        failure {
+            echo "❌ Deployment failed. Check the logs above for more details."
         }
     }
 }
