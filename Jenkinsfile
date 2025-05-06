@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/selva192003/flask-k8s-app.git'
+                git branch: 'main', url: 'https://github.com/selva192003/flask-k8s-app.git'
             }
         }
 
