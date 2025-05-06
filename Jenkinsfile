@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        KUBECONFIG = '/var/lib/jenkins/.kube/config'
         IMAGE_NAME = "selva192003/flask-ml-app"
         IMAGE_TAG = "latest"
         CHART_NAME = "flask-chart"
