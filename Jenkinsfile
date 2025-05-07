@@ -6,12 +6,13 @@ pipeline {
         IMAGE_NAME = "selva192003/flask-ml-app"
         IMAGE_TAG = "latest"
         CHART_NAME = "flask-chart"
-        CHART_PATH = "helm-chart/${CHART_NAME}"
+        CHART_PATH = "${WORKSPACE}/helm-chart/${CHART_NAME}" // Fixed path
         RELEASE_NAME = "flask-app"
         NAMESPACE = "default"
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/selva192003/flask-k8s-app.git'
@@ -34,6 +35,14 @@ pipeline {
                         docker push $IMAGE_NAME:$IMAGE_TAG
                     """
                 }
+            }
+        }
+
+        stage('Debug Workspace') {
+            steps {
+                echo "📂 Checking workspace contents to verify Helm chart path..."
+                sh 'pwd'
+                sh 'ls -R helm-chart'
             }
         }
 
